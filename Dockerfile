@@ -28,6 +28,9 @@ EXPOSE 27015
 # HLTV
 EXPOSE 27020/udp
 
+# for nano to work
+ENV TERM xterm
+
 # run half-life dedicated server
 WORKDIR /steam/hlds
 CMD ["./hlds_run", "-game", "valve"]
