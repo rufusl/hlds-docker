@@ -11,9 +11,8 @@ WORKDIR /steam/steamcmd
 RUN /bin/bash ./steam_install.sh
 
 # install half-life dedicated server
-RUN ./steamcmd.sh +login anonymous +force_install_dir /steam/hlds +app_update 90 validate +quit; exit 0
-# for some reason we have to run this twice to be succesful, the first install fails with "app state 0x6"
-RUN ./steamcmd.sh +login anonymous +force_install_dir /steam/hlds +app_update 90 validate +quit
+# for some reason we have to run app_update twice to be succesful, the first install fails with "app state 0x6"
+RUN ./steamcmd.sh +login anonymous +force_install_dir /steam/hlds +app_update 90 validate +app_update 90 validate +quit
 
 # fixes/workarounds
 RUN mkdir -p ~/.steam
