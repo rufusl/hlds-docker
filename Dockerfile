@@ -28,6 +28,13 @@ EXPOSE 27015
 # HLTV
 EXPOSE 27020/udp
 
-# run half-life dedicated server
 WORKDIR /steam/hlds
+
+# create some sensible default configuration
+COPY addons_maps.tar.gz /steam/hlds
+COPY config.tar.gz /steam/hlds
+COPY config_install.sh /steam/hlds
+RUN config_install.sh
+
+# run half-life dedicated server
 CMD ["./hlds_run", "-game", "valve"]
